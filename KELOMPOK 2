@@ -1,0 +1,93 @@
+#include <iostream>
+using namespace std;
+
+//KELOMPOK2
+//KINANTI RAI UTAMI 
+//FATHAN UMARA
+//HABIBULLAH ARRASYID
+//RAFLY EDO
+//RIZQI ANASTA
+//CHANDRA WAHYU EKA
+
+int main() {
+    int tujuan;
+    char pilihProduk;
+    char cobaTester;
+    int metodeBayar;
+    char sharing;
+
+    cout << "=== SISTEM PELAYANAN TOKO ===" << endl;
+
+    // 1. Pelanggan datang ke toko
+    cout << "Pelanggan datang ke toko." << endl;
+
+    // 2. Menentukan tujuan pelanggan
+    cout << "Tujuan pelanggan:" << endl;
+    cout << "1. Langsung beli" << endl;
+    cout << "2. Konsultasi" << endl;
+    cout << "Pilih (1/2): ";
+    cin >> tujuan;
+
+    if (tujuan == 2) {
+        cout << "Pelanggan melakukan konsultasi dengan pegawai." << endl;
+    }
+
+    // 3. Setelah memilih produk
+    cout << "Apakah pelanggan sudah memilih produk? (y/n): ";
+    cin >> pilihProduk;
+
+    if (pilihProduk == 'n' || pilihProduk == 'N') {
+        cout << "Pelanggan meminta bantuan pegawai untuk memilih produk." << endl;
+    } else {
+        cout << "Pelanggan melanjutkan pembelian." << endl;
+    }
+
+    // 4. Keputusan mencoba tester (opsional)
+    cout << "Apakah pelanggan ingin mencoba tester? (y/n): ";
+    cin >> cobaTester;
+
+    if (cobaTester == 'y' || cobaTester == 'Y') {
+        cout << "Pelanggan mencoba tester produk." << endl;
+    }
+
+    // 5. Proses pembayaran
+    cout << "\nProses pembayaran..." << endl;
+
+    // 6. metode pembayaran
+    cout << "Metode Pembayaran:" << endl;
+    cout << "1. Tunai" << endl;
+    cout << "2. Kartu" << endl;
+    cout << "3. QRIS" << endl;
+    cout << "Pilih (1/2/3): ";
+    cin >> metodeBayar;
+
+    switch (metodeBayar) {
+        case 1:
+            cout << "Pembayaran menggunakan Tunai." << endl;
+            break;
+        case 2:
+            cout << "Pembayaran menggunakan Kartu." << endl;
+            break;
+        case 3:
+            cout << "Pembayaran menggunakan QRIS." << endl;
+            break;
+        default:
+            cout << "Metode pembayaran tidak valid." << endl;
+    }
+
+    // 7. Penyerahan produk & bukti transaksi
+    cout << "Produk dan bukti transaksi diserahkan ke pelanggan." << endl;
+
+    // 8. Sharing lanjutan (opsional)
+    cout << "Apakah pelanggan ingin sharing lanjutan? (y/n): ";
+    cin >> sharing;
+
+    if (sharing == 'y' || sharing == 'Y') {
+        cout << "Pegawai melakukan sharing lanjutan dengan pelanggan." << endl;
+    }
+
+    // 9. Pelanggan pulang
+    cout << "\nPelanggan pulang. Terima kasih telah berbelanja!" << endl;
+
+    return 0;
+}
