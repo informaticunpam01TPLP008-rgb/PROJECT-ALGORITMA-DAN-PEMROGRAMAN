@@ -1,0 +1,115 @@
+KELOMPOK 5
+1. Nayshila Anggiriani Ramadhini (251011401629)
+2. Nurbainah (251011401562)
+3. Reisal Azzah Fahrezi (251011401643)
+4. Riza Aprilian (251011400399)
+5. Tiara Lestari (251011401775)
+#include <iostream>
+#include <string>
+#include <iomanip>
+#include <windows.h>
+using namespace std;
+int main() {
+// =====================
+// Deklarasi Variabel
+// =====================
+string nama, hp, jenisPakaian;
+int jumlahPakaian, pilihan;
+double berat, tarif, totalHarga;
+char kondisi, datang;
+static int nomor = 1;
+// =====================
+// S1 - Input Data Pelanggan
+// =====================
+cout << "Masukkan nama pelanggan: ";
+getline(cin, nama);
+cout << "Masukkan nomor HP: ";
+getline(cin, hp);
+// =====================
+// S2 - Input Data Pakaian
+// =====================
+cout << "\nMasukkan jumlah pakaian: ";
+cin >> jumlahPakaian;
+cin.ignore();
+cout << "Masukkan jenis pakaian: ";
+getline(cin, jenisPakaian);
+cout << "Masukkan total berat (kg): ";
+cin >> berat;
+// =====================
+// S3 - Pilih Layanan
+// =====================cout << "\nPilih layanan:\n";
+cout << "1. Reguler (Rp 8.000/kg)\n";
+cout << "2. Express (Rp 12.000/kg)\n";
+cout << "Pilihan: ";
+cin >> pilihan;
+// =====================
+// IF1 - Reguler / Express
+// =====================
+if (pilihan == 1) {
+tarif = 8000;
+cout << "S4 - Jalur Reguler (Antrian Normal)\n";
+} else {
+tarif = 12000;
+cout << "S3a - Jalur Express (Prioritas Cepat)\n";
+}
+// =====================
+// S5 - Hitung Total Harga
+// =====================
+totalHarga = berat * tarif;
+cout << "\nS5 - Total Harga: Rp "
+<< fixed << setprecision(0) << totalHarga << endl;
+// =====================
+// S6 - Generate ID Tracking
+// =====================
+cout << "ID Tracking: LDY"
+<< setw(4) << setfill('0') << nomor++ << endl;
+// =====================
+// IF2 - Kondisi Khusus
+// =====================
+cout << "\nApakah ada pakaian rusak/kondisi khusus? (y/n): ";
+cin >> kondisi;
+if (kondisi == 'y' || kondisi == 'Y') {
+// =====================
+// S7A - Penanganan Khusus
+// =====================
+cout << "Penanganan pakaian khusus dilakukan\n";
+}
+// =====================
+// S8 - Pemisahan Pakaian
+// =====================
+cout << "Pemisahan pakaian berdasarkan warna, bahan, dan tingkat kotor\n";// =====================
+// S9 - Proses Laundry Bertahap
+// =====================
+cout << "\nProses Laundry:\n";
+cout << "Status: diCuci\n";
+Sleep(2000);
+cout << "Status: diKeringkan\n";
+Sleep(5000);
+cout << "Status: diSetrika\n";
+Sleep(3000);
+cout << "Status: diParfum\n";
+Sleep(2000);
+cout << "Status: diDinginkan\n";
+Sleep(4000);
+cout << "Status: diPacking\n";
+Sleep(3000);
+// =====================
+// S10 - Update Status
+// =====================
+cout << "\nStatus Laundry: SIAP DIAMBIL\n";
+// =====================
+// WHILE - Menunggu Pelanggan
+// =====================
+do {
+cout << "Apakah pelanggan sudah datang? (y/n): ";
+cin >> datang;
+} while (datang == 'n' || datang == 'N');
+// =====================
+// S11 - Penyerahan & Pembayaran
+// =====================
+cout << "\nLaundry diserahkan kepada pelanggan\n";
+cout << "Pembayaran Rp "
+<< fixed << setprecision(0) << totalHarga << " diterima\n";
+cout << "Transaksi selesai\n";
+return 0;
+}
