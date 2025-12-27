@@ -1,0 +1,91 @@
+/*
+========================================
+IMPLEMENTASI FLOWCHART
+Kelompok 1
+
+Anggota:
+1. Cynthia - 251011402472
+2. Dedra Alfizaki Wirdiyan Muldjabar - 251011400407
+3. Ilham Hakim - 251011402327
+4. Inval Yuswardiansyah Firdaus - 251011400414
+5. Muhammad Rafidz Adhie Putra - 251011400381
+6. Putra Ramadhan - 251011402028
+
+Kelas : 01TPLP008
+========================================
+*/
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    // S1: Input Data Barang
+    string namaBarang;
+    int harga;
+    char sesuai;
+
+    do {
+        cout << "=== INPUT DATA BARANG ===" << endl;
+        cout << "Masukkan nama barang : ";
+       	cin >> namaBarang;
+
+        cout << "Masukkan harga barang : ";
+        cin >> harga;
+
+        // P1: Proses Pilih Barang
+        cout << "Apakah barang sudah sesuai? (y/n): ";
+        cin >> sesuai;
+
+        // While: Ulangi Pilihan Barang
+    } while (sesuai != 'y');
+
+    // P2: Menuju Kasir
+    cout << "\nMenuju kasir..." << endl;
+
+    // P3: Scan Barcode (simulasi)
+    cout << "Scan barcode berhasil." << endl;
+
+    // S2: Tampilkan Data Barang
+    cout << "\n=== DATA BARANG ===" << endl;
+    cout << "Nama Barang : " << namaBarang << endl;
+    cout << "Harga       : " << harga << endl;
+
+    // IF Metode Bayar
+    int metode;
+    cout << "\nPilih metode pembayaran:" << endl;
+    cout << "1. Cash" << endl;
+    cout << "2. QRIS / Debit" << endl;
+    cout << "Pilihan: ";
+    cin >> metode;
+
+    if (metode == 1) {
+        // P4: Terima Cash
+        int uang;
+        cout << "Masukkan uang pembayaran: ";
+        cin >> uang;
+
+        // P5: Hitung Kembalian
+        int kembalian = uang - harga;
+        cout << "Kembalian: " << kembalian << endl;
+
+    } else if (metode == 2) {
+        // P6: Proses QRIS atau Debit
+        cout << "Memproses pembayaran QRIS/Debit..." << endl;
+
+        // P7: Verifikasi Bayar
+        cout << "Pembayaran berhasil diverifikasi." << endl;
+    } else {
+        cout << "Metode pembayaran tidak valid." << endl;
+    }
+
+    // S3: Cetak Struk
+    cout << "\n=== STRUK PEMBAYARAN ===" << endl;
+    cout << "Barang : " << namaBarang << endl;
+    cout << "Harga  : " << harga << endl;
+    cout << "Terima kasih telah berbelanja!" << endl;
+
+    // Finish
+    cout << "\nTransaksi selesai." << endl;
+
+    return 0;
+}
