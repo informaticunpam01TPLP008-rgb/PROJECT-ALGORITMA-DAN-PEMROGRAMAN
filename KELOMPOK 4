@@ -1,0 +1,74 @@
+/*
+IMPLEMENTASI FLOWCHART
+KELOMPOK 4
+
+ANGGOTA: 
+1. Jery Yosua Manulang - 251011401651
+2. Daniel Saputra - 251011400391
+3. Bindu Hosea Marbun - 251011400421
+4. Muhammad Rizki Algifahri - 251011400392
+
+KELAS : 01TPLP008
+*/
+
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    int id_tiket = 0;  
+    char lagi;  
+
+    do {
+        string nama, email, notelp, pembayaran;
+        int harga, jumlahtiket, uangdibayar;
+
+        cout << "Selamat Datang di Program Pembelian Tiket Konser Paduan Suara Gita Sasmita" << endl;
+        cout << "Masukan nama Anda: ";
+        cin >> nama;
+        cout << "Masukan Email Anda: ";
+        cin >> email;
+        cout << "Masukan Nomor Telepon Anda: ";
+        cin >> notelp;
+        cout << "Berapa Jumlah Tiket Yang Anda Pesan? ";
+        cin >> jumlahtiket;
+
+        harga = jumlahtiket * 65000;
+        cout << "Bayar tiket seharga " << harga << "!" << endl;
+        cout << "Masukkan Uang Anda: ";
+        cin >> uangdibayar;
+
+        if (uangdibayar == harga) {
+            pembayaran = "Valid";
+            id_tiket++;  
+            cout << "e-tiket Anda" << endl;
+            cout << "=== KONSER PSM GITA SASMITA 2025: GEMA GUMILAR ===" << endl;
+            cout << "Kamis, 11 Desember 2025 18:30 - 20:00 \n";
+            cout << "Teleconference Universitas Pamulang \n";
+            cout << "Gedung C Lantai 12, Kampus UNPAM Viktor \n";
+            cout << "Pamulang, Tangerang Selatan";
+            cout << endl << nama << endl << email << endl;
+            cout << "ID TICKET: " << id_tiket << endl << "Tiket Ini Mewakili: " << jumlahtiket << " Orang Penonton" << endl;
+            cout << endl << "\nATURAN MASUK UNTUK PEMEGANG TIKET \n";
+            cout << "Tempat duduk bersifat bebas dan akan diberikan berdasarkan \n";
+            cout << "prinsip first-come, first-served. Pintu masuk akan dibuka pada \n";
+            cout << "pukul 17:30, dan setiap penonton wajib menunjukkan e-tiket ini di \n";
+            cout << "meja registrasi sebelum memasuki area konser. Dilarang keras \n";
+            cout << "memperbanyak atau menyebarkan tiket ini dalam bentuk apa pun." << endl;
+            cout << "e-tiket Anda telah dikirimkan ke email: " << email << endl;
+        } else {
+            pembayaran = "Tidak Valid";
+            cout << "Pembayaran tidak valid" << endl;
+            cout << "Hubungi no 085122879 untuk konfirmasi" << endl;
+        }
+
+       
+        cout << "Apakah Anda ingin membeli tiket lagi? (y/n): ";
+        cin >> lagi;
+        cin.ignore(); 
+
+    } while (lagi == 'y' || lagi == 'Y');
+
+    cout << "Terima kasih telah menggunakan program ini!" << endl;
+    return 0;
+}
