@@ -1,0 +1,182 @@
+#include <iostream>
+#include <string>
+#include <vector>
+using namespace std;
+
+// Kelompok 6
+// M. Denis Putra Wijaya
+// Aldian yofandi
+// Yogi septiawan
+// Amanda aprilia putri
+
+struct Pemesanan {
+    string nama, noHP, jadwal, tanggal;
+    double hargaTotal, dpDibayar;
+};
+
+vector<string> jadwalTerpesan = {"14:00", "16:00"};
+
+// Fungsi utilitas
+void clearInput() {
+    cin.clear();
+    cin.ignore(10000, '\n');
+}
+
+bool validasiHP(const string& hp) {
+    if (hp.length() < 10 || hp.length() > 13) return false;
+    for (char c : hp) {
+        if (!isdigit(c)) return false;
+    }
+    return true;
+}
+
+bool cekKetersediaan(const string& jadwal) {
+    for (const string& j : jadwalTerpesan) {
+        if (j == jadwal) return false;
+    }
+    return true;
+}
+
+bool konfirmasi(const string& tanya) {
+    char pilih;
+    cout << tanya << " (y/n): ";
+    cin >> pilih;
+    clearInput();
+    return (pilih == 'y' || pilih == 'Y');
+}
+
+// Fungsi input
+void inputData(Pemesanan &p) {
+    cout << "\n=== INPUT DATA PEMESANAN ===" << endl;
+    
+    do {
+        cout << "Nama Pemesan: ";
+        getline(cin, p.nama);
+        if (p.nama.empty()) cout << "Nama tidak boleh kosong!" << endl;
+    } while (p.nama.empty());
+    
+    do {
+        cout << "No. HP (10-13 digit): ";
+        getline(cin, p.noHP);
+        if (!validasiHP(p.noHP)) cout << "Format nomor HP tidak valid!" << endl;
+    } while (!validasiHP(p.noHP));
+    
+    cout << "Tanggal (DD/MM/YYYY): ";
+    getline(cin, p.tanggal);
+    
+    cout << "Jadwal (Contoh: 18:00): ";
+    getline(cin, p.jadwal);
+    
+    p.hargaTotal = 150000;
+}
+
+void cetakStruk(const Pemesanan &p, bool lunas = false) {
+    cout << "\n=== BUKTI PEMESANAN ===" << endl;
+    cout << "Nama       : " << p.nama << endl;
+    cout << "No. HP     : " << p.noHP << endl;
+    cout << "Tanggal    : " << p.tanggal << endl;
+    cout << "Jadwal     : " << p.jadwal << endl;
+    cout << "Lapangan   : Futsal" << endl;
+    cout << "Harga      : Rp " << (int)p.hargaTotal << endl;
+    cout << "DP (50%)   : Rp " << (int)p.dpDibayar << endl;
+    
+    if (lunas) {
+        cout << "Sisa       : Rp " << (int)(p.hargaTotal - p.dpDibayar) << endl;
+        cout << "\nSTATUS: LUNAS" << endl;
+    } else {
+        cout << "\nSTATUS: MENUNGGU PELUNASAN" << endl;
+    }
+    cout << "========================" << endl;
+}
+
+int main() {
+    Pemesanan data;
+    
+    // 1. Input & Validasi
+    inputData(data);
+    
+    // 2. Cek Ketersediaan
+    cout << "\nMengecek ketersediaan jadwal..." << endl;
+    if (!cekKetersediaan(data.jadwal)) {
+        cout << "\nJADWAL TIDAK TERSEDIA!" << endl;
+        cout << "Jadwal " << data.jadwal << " sudah dipesan." << endl;
+        cout << "\nJadwal yang tersedia: 08:00, 10:00, 12:00, 18:00, 20:00" << endl;
+        cout << "(Jadwal terpesan: 14:00, 16:00)" << endl;
+        return 0;
+    }
+    
+    cout << "Jadwal tersedia!" << endl;
+    cout << "Sistem mengunci jadwal selama 30 menit untuk pembayaran DP.\n" << endl;
+    
+    // 3. Pembayaran DP
+    cout << "=== PEMBAYARAN DP ===" << endl;
+    cout << "Total Biaya  : Rp " << (int)data.hargaTotal << endl;
+    cout << "DP Minimal   : Rp " << (int)(data.hargaTotal * 0.5) << " (50%)" << endl;
+    cout << "\nWaktu pembayaran: 30 menit" << endl;
+    cout << "Transfer ke: BCA 1234567890 a.n Lapangan Futsal" << endl;
+    
+    if (!konfirmasi("\nApakah DP min 50% dibayar dalam 30 menit?")) {
+        cout << "\nPEMESANAN DIBATALKAN" << endl;
+        cout << "Pembayaran DP gagal. Pemesanan dibatalkan. Selesai." << endl;
+        return 0;
+    }
+    
+    data.dpDibayar = data.hargaTotal * 0.5;
+    cout << "\nPembayaran DP diterima!" << endl;
+    cetakStruk(data, false);
+    jadwalTerpesan.push_back(data.jadwal);
+    
+    // 4. Cek Pembatalan
+    cout << "\n=== CEK PEMBATALAN ===" << endl;
+    if (konfirmasi("Apakah ada pembatalan pemesanan?")) {
+        cout << "\n--- PROSES PEMBATALAN ---" << endl;
+        cout << "KEBIJAKAN PEMBATALAN:" << endl;
+        cout << "- Pembatalan > 6 jam sebelum main: DP dikembalikan" << endl;
+        cout << "- Pembatalan <= 6 jam sebelum main: DP hangus" << endl;
+        
+        if (konfirmasi("\nApakah pembatalan dilakukan > 6 jam sebelum main?")) {
+            cout << "\nPembatalan > 6 jam: DP dikembalikan. Selesai." << endl;
+            cout << "DP sebesar Rp " << (int)data.dpDibayar << " akan dikembalikan dalam 3-5 hari kerja." << endl;
+        } else {
+            cout << "\nPembatalan <= 6 jam: DP hangus. Selesai." << endl;
+        }
+        return 0;
+    }
+    
+    cout << "Tidak ada pembatalan. Pemesanan berlanjut.\n" << endl;
+    
+    // 5. Pelunasan
+    cout << "=== PELUNASAN & PENGGUNAAN ===" << endl;
+    cout << "Sisa pembayaran: Rp " << (int)(data.hargaTotal - data.dpDibayar) << endl;
+    
+    if (konfirmasi("Apakah sisa pembayaran sudah dilunasi?")) {
+        cout << "\nPembayaran lunas!" << endl;
+        cetakStruk(data, true);
+    } else {
+        cout << "\nHarap lunasi maksimal saat check-in." << endl;
+    }
+    
+    // 6. Penggunaan
+    cout << "\nPenggunaan lapangan dimulai." << endl;
+    cout << "Selamat bermain!\n" << endl;
+    
+    // 7. Selesai & Inspeksi
+    cout << "=== SELESAI ===" << endl;
+    
+    if (konfirmasi("Apakah ada kerusakan fasilitas?")) {
+        cout << "\nDitemukan kerusakan. Staff akan menghubungi untuk biaya perbaikan." << endl;
+    } else {
+        cout << "\nTidak ada kerusakan." << endl;
+    }
+    
+    if (konfirmasi("Apakah lapangan bersih dan rapi?")) {
+        cout << "Lapangan dalam kondisi bersih." << endl;
+    } else {
+        cout << "Lapangan kurang bersih. Staff akan membersihkan." << endl;
+    }
+    
+    cout << "\nStaff cek kerusakan & kebersihan lapangan." << endl;
+    cout << "Proses pemesanan dan penggunaan lapangan SELESAI.\n" << endl;
+    
+    return 0;
+}
