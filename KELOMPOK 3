@@ -1,0 +1,77 @@
+==========================================================================
+Kelas :01TPLP008
+Kelompok 3:
+1.Bagus Saffa (251011401612)
+2.Torik Ilham Faturahman (251011400409)
+3.M Riehan Ardiyansyah (251011400422)
+4.Daffa Athala Saputra (251011400403)
+5.Denis Dava Haeruman (251011400405)
+6.Siti Intan Nurfadilah (251011400400)
+
+==========================================================================
+
+
+#include <iostream>
+using namespace std;
+int main() {
+ // Deklarasi variabel
+ string nama;
+ int menu, jumlah;
+ float harga = 0, total, bayar, kembalian;
+ // MULAI
+ cout << "=====================================" << endl;
+ cout << " SISTEM PEMESANAN COFFEE SHOP" << endl;
+ cout << "=====================================" << endl;
+ // INPUT NAMA PEMBELI
+ cout << "Masukkan nama pembeli : ";
+ cin >> nama;
+ // TAMPILKAN MENU
+ cout << "\nMenu Coffee:" << endl;
+ cout << "1. Espresso - Rp 15.000" << endl;
+ cout << "2. Cappuccino - Rp 20.000" << endl;
+ cout << "3. Latte - Rp 18.000" << endl;
+ cout << "4. Americano - Rp 17.000" << endl;
+ // INPUT PILIHAN MENU
+ cout << "\nPilih menu (1-4): ";
+ cin >> menu;
+ // INPUT JUMLAH PESANAN
+ cout << "Jumlah pesanan : ";
+ cin >> jumlah;
+ // PROSES PEMILIHAN MENU
+ if (menu == 1) {
+ harga = 15000;
+ } else if (menu == 2) {
+ harga = 20000;
+ } else if (menu == 3) {
+ harga = 18000;
+ } else if (menu == 4) {
+ harga = 17000;
+ } else {
+ cout << "Menu tidak tersedia!" << endl;
+ return 0;
+ }
+ // PROSES HITUNG TOTAL
+ total = harga * jumlah;
+ // OUTPUT TOTAL PEMBAYARAN
+ cout << "\nTotal pembayaran : Rp " << total << endl;
+ // INPUT UANG BAYAR
+ cout << "Masukkan uang bayar : Rp ";
+ cin >> bayar;
+ // KEPUTUSAN PEMBAYARAN
+ if (bayar < total) {
+ cout << "\nUang tidak mencukupi!" << endl;
+ } else {
+ kembalian = bayar - total;
+ // OUTPUT STRUK PEMBAYARAN
+ cout << "\n========== STRUK PEMBAYARAN ==========" << endl;
+ cout << "Nama Pembeli : " << nama << endl;
+ cout << "Jumlah Pesanan : " << jumlah << endl;
+ cout << "Total Bayar : Rp " << total << endl;
+ cout << "Uang Bayar : Rp " << bayar << endl;
+ cout << "Kembalian : Rp " << kembalian << endl;
+ cout << "=====================================" << endl;
+ cout << "Terima kasih ?" << endl;
+ }
+ // SELESAI
+ return 0;
+}
